@@ -1,12 +1,14 @@
 Ext.onReady(() => {
     const authorsPanel = createAuthorPanel();
 
-    const booksPanel = createAuthorPanel();
+    const booksPanel = createBooksPanel();
+
+    const articlePanel = createArticlesPanel();
 
     const mainCard = Ext.create('Ext.Panel',{
-        region: 'center',
-        layout: 'card',
-        items: [authorsPanel, booksPanel]
+        region: 'north', // Esta es la configuración que lo pone arriba
+        xtype: 'toolbar', // El tipo de componente
+        items: [authorsPanel, booksPanel, articlePanel]
     });
 
     Ext.create('Ext.container.Viewport', {
@@ -23,6 +25,10 @@ Ext.onReady(() => {
                 {
                     text: 'Books',
                     handler: ()=>mainCard.getLayout().setActiveItem(booksPanel)
+                },
+                {
+                    text: 'Articles',
+                    handler: ()=>mainCard.getLayout().setActiveItem(articlePanel)
                 }
             
             ]

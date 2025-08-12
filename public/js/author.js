@@ -1,29 +1,37 @@
-const createAuthorPanel = () => {
-    Ext.define('App.model.Author',{
-        extends: 'Ext.data.Model',
-        fields: [
-            {name: 'id', type: "int"},
-            {name: 'firstName',     type: "string"},
-            {name: 'lastName',    type: "string"},
-            {name: 'username',      type: "string"},
-            {name: 'email',         type: "string"},
-            {name: 'password',      type: "string"},
-            {name: 'orcid',         type: "string"},
-            {name: 'affiliation',   type: "string"}
-        ]
-    });
+Ext.define('App.model.Author', {
+    extend: 'Ext.data.Model',
+    fields: [
+        {name: 'id', type: "int"},
+        {name: 'first_Name', type: "string"}, 
+        {name: 'last_Name', type: "string"},  
+        {name: 'username', type: "string"},
+        {name: 'email', type: "string"},
+        {name: 'password', type: "string"},
+        {name: 'orcid', type: "string"},
+        {name: 'affiliation', type: "string"}
+    ]
+});
 
-    let AuthorStore = Ext.create('Ext.data.Store',{
+
+const createAuthorPanel = () => {
+    let AuthorStore = Ext.create('Ext.data.Store', {
         storeId: 'AuthorStore',
         model: 'App.model.Author',
         proxy: {
-            type       : 'rest',
-            url        : '/api/author',
-            reader     : {type: 'json',rootProperty: ''},
-            write: {type: 'json',rootProperty: '',writeAllFields: true},
+            type: 'rest',
+            url: '/api/author.php',
+            reader: {
+                type: 'json',
+                rootProperty: '' 
+            },
+            write: {
+                type: 'json',
+                rootProperty: '',
+                writeAllFields: true
+            },
             appendID: false
         },
-        autoLoad: true,
+        autoLoad: true, 
         autoSync: false
     });
 
@@ -45,14 +53,14 @@ const createAuthorPanel = () => {
                 flex: 1,
                 sortable: false,
                 hidable: false,
-                dataIndex: 'firstName'
+                dataIndex: 'first_Name' 
             },
             {
                 text: 'Last Name',
                 flex: 1,
                 sortable: false,
                 hidable: false,
-                dataIndex: 'lastName'
+                dataIndex: 'last_Name' 
             },
             {
                 text: 'Username',
@@ -83,7 +91,7 @@ const createAuthorPanel = () => {
                 dataIndex: 'affiliation'
             }
         ],
-        renderTo: Ext.getBody()
+        renderTo: Ext.getBody() 
     });
     return grid;
 };

@@ -31,7 +31,7 @@ try {
         foreach ($authors as $author) {
             // Asegúrate de que Author::getId(), getFirstName(), etc. sean públicos en Author.php
             if ($author instanceof Author) {
-                echo "<li>ID: " . $author->getId() . " | Nombre: " . $author->getFirstName() . " " . $author->getSecondName() . " | Email: " . $author->getEmail() . "</li>";
+                echo "<li>ID: " . $author->getId() . " | Nombre: " . $author->getFirstName() . " " . $author->getLastName() . " | Email: " . $author->getEmail() . "</li>";
             } else {
                 echo "<li>Error: Objeto no es una instancia de Author.</li>";
             }
@@ -60,7 +60,7 @@ try {
             if ($book instanceof Book) {
                 $authorName = "Desconocido";
                 if ($book->getAuthor() instanceof Author) {
-                    $authorName = $book->getAuthor()->getFirstName() . " " . $book->getAuthor()->getSecondName();
+                    $authorName = $book->getAuthor()->getFirstName() . " " . $book->getAuthor()->getLastName();
                 }
                 echo "<li>ID: " . $book->getId() . " | Título: " . $book->getTitle() . " | ISBN: " . $book->getIsbn() . " | Autor: " . $authorName . "</li>";
             } else {
@@ -91,7 +91,7 @@ try {
             if ($article instanceof Article) {
                 $authorName = "Desconocido";
                 if ($article->getAuthor() instanceof Author) {
-                    $authorName = $article->getAuthor()->getFirstName() . " " . $article->getAuthor()->getSecondName();
+                    $authorName = $article->getAuthor()->getFirstName() . " " . $article->getAuthor()->getLastName();
                 }
                 echo "<li>ID: " . $article->getId() . " | Título: " . $article->getTitle() . " | DOI: " . $article->getDOI() . " | Autor: " . $authorName . "</li>";
             } else {

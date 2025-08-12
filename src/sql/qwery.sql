@@ -88,7 +88,7 @@ BEGIN
         a.keywords,
         a.indexation,
         a.magazine,
-        a.aknowledge_are, -- ¡CORREGIDO! Ahora usa 'a.aknowledge_are' directamente
+        a.aknowledge_are,
         au.id AS id,
         au.first_name,
         au.last_name AS second_name,

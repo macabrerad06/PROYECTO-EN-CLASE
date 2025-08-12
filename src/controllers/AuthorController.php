@@ -68,12 +68,12 @@ class AuthorController
             }
 
             if (isset($payload['first_Name'])) $existing->setFirstName($payload['first_Name']);
-            if (isset($payload['last_Name'])) $existing->setSecondName($payload['last_Name']);
+            if (isset($payload['last_Name'])) $existing->setLastName($payload['last_Name']); // ✨ CORREGIDO: setSecondName -> setLastName
             if (isset($payload['username'])) $existing->setUsername($payload['username']);
             if (isset($payload['email'])) $existing->setEmail($payload['email']);
             if (isset($payload['password'])) $existing->setPassword($payload['password']);
             if (isset($payload['orcid'])) $existing->setOrcid($payload['orcid']);
-            if (isset($payload['affiliation'])) $existing->setAffiliation($payload['affiliation']); // Nombre corregido
+            if (isset($payload['affiliation'])) $existing->setAffiliation($payload['affiliation']);
 
             echo json_encode(['success' => $this->authorRepository->update($existing)]);
             return;
@@ -104,7 +104,7 @@ class AuthorController
             'email' => $author->getEmail(),
             'password' => $author->getPassword(),
             'orcid' => $author->getOrcid(),
-            'affiliation' => $author->getAfiliation() // Nombre del método corregido
+            'affiliation' => $author->getAfiliation() 
         ];
     }
 }
