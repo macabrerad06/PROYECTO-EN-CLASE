@@ -32,13 +32,13 @@ class AuthorRepository implements RepositoryInterface{
             throw new \InvalidArgumentException('Author expected');
         }
         $sql = "INSERT INTO author
-        (id,first_name,second_name,username,email,password,orcid,afiliation) 
-        VALUES(:id,:first_name,:second_name,:username,:email,:password,:orcid,:afiliation)";//para ingresar lso valores ponemos una referencia
+        (id,first_name,last_name,username,email,password,orcid,afiliation) 
+        VALUES(:id,:first_name,:last_name,:username,:email,:password,:orcid,:afiliation)";//para ingresar lso valores ponemos una referencia
         $stmt = $this -> db -> prepare($sql);
         return $stmt -> execute([
             'id' => $entity -> getId(),
             'first_name' => $entity -> getFirstName(),
-            'second_name' => $entity -> getSecondName(),
+            'last_name' => $entity -> getLastName(),
             'username' => $entity -> getUsername(),
             'email' => $entity -> getEmail(),
             'password' => $entity -> getPassword(),
@@ -54,7 +54,7 @@ class AuthorRepository implements RepositoryInterface{
         }
         $sql = "UPDATE author SET 
                 first_name=:first_name,
-                second_name=:second_name,
+                last_name=:last_name,
                 username=:username,
                 email=:email,
                 password=:password,
@@ -64,7 +64,7 @@ class AuthorRepository implements RepositoryInterface{
         return $stmt -> execute([
             'id' => $entity -> getId(),
             'first_name' => $entity -> getFirstName(),
-            'second_name' => $entity -> getSecondName(),
+            'last_name' => $entity -> getLastName(),
             'username' => $entity -> getUsername(),
             'email' => $entity -> getEmail(),
             'password' => $entity -> getPassword(),
@@ -96,7 +96,7 @@ class AuthorRepository implements RepositoryInterface{
         $Author = new Author(
             (int)$row['id'],
             $row['first_name'],
-            $row['second_name'],
+            $row['last_name'],
             $row['username'],
             $row['email'],
             'temporal',
@@ -106,7 +106,7 @@ class AuthorRepository implements RepositoryInterface{
 
         //reemplazar hash de la contrasena
         $ref = new \ReflectionClass($Author);
-        $prop =ref->getproperty('password');
+        $prop =$ref->getproperty('password');
         $prop->SetAccessible(true);
         $prop->setValue($Author,$row['password']);
         return $Author;

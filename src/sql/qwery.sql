@@ -37,7 +37,7 @@ CREATE TABLE article (
     keywords VARCHAR(50) NOT NULL,
     indexation VARCHAR(20) NOT NULL,
     magazine VARCHAR(50) NOT NULL,
-    area VARCHAR(50) NOT NULL,
+    aknowledge_are VARCHAR(50) NOT NULL,
     Foreign Key (publication_id) REFERENCES publication(id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
@@ -72,6 +72,42 @@ BEGIN
 END$$
 DELIMITER ;
 
+DELIMITER //
+
+-- Crear el procedimiento con el nombre de columna corregido
+CREATE PROCEDURE sp_article_list()
+BEGIN
+    SELECT
+        p.id AS publication_id,
+        p.title,
+        p.description,
+        p.publication_date,
+        p.author_id,
+        a.doi AS DOI,
+        a.abstract,
+        a.keywords,
+        a.indexation,
+        a.magazine,
+        a.aknowledge_are, -- ¡CORREGIDO! Ahora usa 'a.aknowledge_are' directamente
+        au.id AS id,
+        au.first_name,
+        au.last_name AS second_name,
+        au.username,
+        au.email,
+        au.password,
+        au.orcid,
+        au.afiliation
+    FROM
+        publication p
+    JOIN
+        article a ON p.id = a.publication_id
+    JOIN
+        author au ON p.author_id = au.id
+    WHERE
+        p.type = 'article';
+END //
+
+DELIMITER ;
 
 call sp_article_list();
 call sp_find_book(12);

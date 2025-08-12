@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de Publicaciones</title>
+    <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/classic/theme-crisp/resources/theme-crisp-all.css" />
+  <script type="text/javascript" 
+  src="https://cdnjs.cloudflare.com/ajax/libs/extjs/6.0.0/ext-all.js"></script>
 </head>
 <body>
-    <h1>final project </h1>
-    <body>
+    <h1>Final Project</h1>
+    <div id="app"></div>
+    <script src="js/author.js"></script>
+    <script src="js/book.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
